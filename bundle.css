@@ -3,10 +3,3 @@
     overflow: scroll;
 }
 
-.footerText {
-    color: grey;
-    position: fixed;
-    bottom: 0;
-    left: 40%;
-    width: 100%;
-}

@@ -40,5 +40,3 @@ The webpage is hosted using CloudFlare, and takes advantage of CloudFlare Worker
 The site should not require further maintenance, assuming that the GOV.uk API is updated with future bank holiday dates, the webpage and its workers will continue to filter and display them indefinitely. </h5>
 
 ---
-
-<p class="footerText">Copyright © 2021 - 2024 Lorem Ipsum®. All rights reserved.</p>

@@ -71,5 +71,3 @@ layout: layout.njk
     </tr>
   </tbody>
 </table>
-
-<p class="footerText">Copyright © 2021 - 2024 Lorem Ipsum®. All rights reserved.</p>
