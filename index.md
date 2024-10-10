@@ -31,7 +31,7 @@ layout: layout.njk
                 England and Wales
             </button>
         </h2>
-        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#eventsAccordion">
+        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#eventsAccordion">
             <div class="accordion-body" id="englandAndWalesBody"></div>
         </div>
     </div>
@@ -58,6 +58,28 @@ layout: layout.njk
         </div>
     </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const country = request.cf?.country || 'GB-ENG';
+
+    const sections = {
+      'GB-ENG': 'collapseOne',  
+      'GB-WLS': 'collapseOne',  
+      'GB-SCT': 'collapseTwo',
+      'GB-NIR': 'collapseThree',
+    };
+
+    const sectionId = sections[country] || 'collapseOne'; 
+
+    const sectionToShow = document.getElementById(sectionId);
+    if (sectionToShow) {
+      sectionToShow.classList.add('show');
+      sectionToShow.classList.remove('collapse');
+    }
+  });
+</script>
+
 
 <script>
 async function fetchEvents() {
