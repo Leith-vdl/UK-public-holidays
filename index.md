@@ -111,3 +111,5 @@ async function fetchEvents() {
 //calls the function to execute the code and display it in the browser accordion 
 fetchEvents();
 </script>
+
+<p id="footerText">Copyright © 2021 - 2024 Lorem Ipsum®. All rights reserved.</p>

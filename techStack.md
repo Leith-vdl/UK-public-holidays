@@ -23,6 +23,50 @@ layout: layout.njk
 </nav>
 <br>
 
-# Tech Stack for the site
+# Tech Stack
+<br>
+<br>
 
 <p>This will be a summary describing the tech stack of the completed site</p>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Tech</th>
+      <th scope="col">---</th>
+      <th scope="col">Description</th>
+    </tr>
+  </thead>
+  <tbody class="table-group-divider">
+    <tr>
+      <td>11ty(eleventy)</td>
+      <td>---</td>
+      <td>description</td>
+    </tr>
+    <tr>
+      <td>Cloudflare Pages</td>
+      <td>---</td>
+      <td>description</td>
+    </tr>
+    <tr>
+      <td>Cloudflare Workers</td>
+      <td>---</td>
+      <td>description</td>
+    </tr>
+    <tr>
+      <td>Markdown</td>
+      <td>---</td>
+      <td>description</td>
+    </tr>
+    <tr>
+      <td>Nunjucks</td>
+      <td>---</td>
+      <td>description</td>
+    </tr>
+    <tr>
+      <td>Bootstrap</td>
+      <td>---</td>
+      <td>description</td>
+    </tr>
+  </tbody>
+</table>
