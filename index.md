@@ -5,6 +5,15 @@ layout: layout.njk
 
 <h1>UK Bank Holidays:</h1>
 
+<div>
+  <h1>TO DO:</h1>
+  <s><h4>-Make a bootstrap accordian with the regions</h4></s>
+  <s><h4>-11ty/liquid includes and base templates</h4></s>
+  <h4>-Default to the region I am in, using CF worker (request.cf.country)</h4>
+  <h4>-Move the worker code to the pages site (funtions dir) and use git push to deploy</h4>
+  <h4>-Create production site using test code</h4>
+</div>
+
 <div class="accordion" id="eventsAccordion">
     <!-- ENGLAND AND WALES -->
     <div class="accordion-item" id="englandAndWales">
