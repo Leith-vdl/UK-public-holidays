@@ -60,28 +60,33 @@ layout: layout.njk
 </div>
 
 <script>
+  //waits for the DOM to fully load before executing the script
   document.addEventListener('DOMContentLoaded', () => {
+    
+    //get the user's country, or defaults to 'GB-ENG' if not available
     const country = request.cf?.country || 'GB-ENG';
 
+    //maps the correct country code to the correspondingg accordian id (England & Wales share)
     const sections = {
-      'GB-ENG': 'collapseOne',  
-      'GB-WLS': 'collapseOne',  
-      'GB-SCT': 'collapseTwo',
-      'GB-NIR': 'collapseThree',
+      'GB-ENG': 'englandAndWales', 
+      'GB-WLS': 'englandAndWales',  
+      'GB-SCT': 'scotland',  
+      'GB-NIR': 'northernIreland', 
     };
 
-    const sectionId = sections[country] || 'collapseOne'; 
+    //collects the collapse id based on the user's country, or defaults to 'collapseOne'(END/WLS) if country not found
+    const sectionId = sections[country] || 'englandAndWales'; 
 
+    //selects which accordian section should be shown
     const sectionToShow = document.getElementById(sectionId);
+    
+    //iif the section exists in the DOM, "show" it on the webpage
     if (sectionToShow) {
-      sectionToShow.classList.add('show');
-      sectionToShow.classList.remove('collapse');
+      sectionToShow.classList.add('show');      
     }
   });
-</script>
 
 
-<script>
 async function fetchEvents() {
     try {
         //retrieves the data from the given URL and waits for it to be fully fetched
