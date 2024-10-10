@@ -25,7 +25,8 @@ layout: layout.njk
 
 # Documentation
 <br>
-<br>
+
+---
 
 <h5>This site provides the user with groups of bank holidays for residents of the United Kingdom. The events are separated by location (England & Wales, Scotland, and Northern Ireland respectively) and filtered so that only future bank holidays will be displayed on the page. 
 <br>
@@ -37,3 +38,7 @@ The webpage is hosted using CloudFlare, and takes advantage of CloudFlare Worker
 <br>
 <br>
 The site should not require further maintenance, assuming that the GOV.uk API is updated with future bank holiday dates, the webpage and its workers will continue to filter and display them indefinitely. </h5>
+
+---
+
+<p class="footerText">Copyright © 2021 - 2024 Lorem Ipsum®. All rights reserved.</p>

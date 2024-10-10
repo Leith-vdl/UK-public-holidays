@@ -112,4 +112,4 @@ async function fetchEvents() {
 fetchEvents();
 </script>
 
-<p id="footerText">Copyright © 2021 - 2024 Lorem Ipsum®. All rights reserved.</p>
+<p class="footerText">Copyright © 2021 - 2024 Lorem Ipsum®. All rights reserved.</p>

@@ -3,7 +3,7 @@
     overflow: scroll;
 }
 
-#footerText {
+.footerText {
     color: grey;
     position: fixed;
     bottom: 0;
