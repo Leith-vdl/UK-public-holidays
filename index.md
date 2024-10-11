@@ -1,140 +1,92 @@
 ---
 title: UK Bank Holidays
-layout: layout.njk
+layout: layout.liquid
 ---
 
-<nav class="navbar navbar-expand-lg bg-body-tertiary fs-5">
-  <div class="container-fluid">
-    <a class="navbar-brand fs-3" href="/index.html">UK Bank Holidays</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/docs/index.html/">Documentation</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/techStack/index.html/">Tech Stack</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-<br>
+{% include "nav.liquid" %}
 
-<div class="accordion" id="eventsAccordion">
-    <!-- ENGLAND AND WALES -->
-    <div class="accordion-item" id="englandAndWales">
-        <h2 class="accordion-header" id="headingOne">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                England and Wales
-            </button>
-        </h2>
-        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#eventsAccordion">
-            <div class="accordion-body" id="englandAndWalesBody"></div>
-        </div>
-    </div>
-    <!-- SCOTLAND -->
-    <div class="accordion-item" id="scotland">
-        <h2 class="accordion-header" id="headingTwo">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                Scotland
-            </button>
-        </h2>
-        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#eventsAccordion">
-            <div class="accordion-body" id="scotlandBody"></div>
-        </div>
-    </div>
-    <!-- NORTHERN IRELAND -->
-    <div class="accordion-item" id="northernIreland">
-        <h2 class="accordion-header" id="headingThree">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                Northern Ireland
-            </button>
-        </h2>
-        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#eventsAccordion">
-            <div class="accordion-body" id="northernIrelandBody"></div>
-        </div>
-    </div>
-</div>
+{% include "accordian.liquid" %}
 
 <script>
-  //waits for the DOM to fully load before executing the script
-  document.addEventListener('DOMContentLoaded', () => {
-    
-    //get the user's country, or defaults to 'GB-ENG' if not available
-    const country = request.cf?.country || 'GB-ENG';
+  async function getCountry() {
+    try {
+      const response = await fetch('https://cold-butterfly-7c04.leith-green.workers.dev/');
+      if (!response.ok) throw new Error('Network response was not ok');
+      
+      const data = await response.json();
+      return data.regionCode;
+    } catch (error) {
+      console.error('Fetch error:', error);
+      return 'ENG'; // Default to England if there's an error
+    }
+  }
 
-    //maps the correct country code to the correspondingg accordian id (England & Wales share)
+  document.addEventListener('DOMContentLoaded', async () => {
+    const country = await getCountry();
+
     const sections = {
-      'GB-ENG': 'englandAndWales', 
-      'GB-WLS': 'englandAndWales',  
-      'GB-SCT': 'scotland',  
-      'GB-NIR': 'northernIreland', 
+      'ENG': 'englandAndWales', 
+      'WLS': 'englandAndWales',  
+      'SCT': 'scotland',  
+      'NIR': 'northernIreland', 
     };
-
-    //collects the collapse id based on the user's country, or defaults to 'collapseOne'(END/WLS) if country not found
+    
     const sectionId = sections[country] || 'englandAndWales'; 
-
-    //selects which accordian section should be shown
     const sectionToShow = document.getElementById(sectionId);
     
-    //iif the section exists in the DOM, "show" it on the webpage
     if (sectionToShow) {
-      sectionToShow.classList.add('show');      
+      const collapse = sectionToShow.querySelector('.accordion-collapse');
+      if (collapse) {
+        collapse.classList.add('show');      
+      }
     }
   });
 
+// async function fetchEvents() {
+//     try {
+//         //retrieves the data from the given URL and waits for it to be fully fetched
+//         const response = await fetch('https://purple-pine-028c.leith-green.workers.dev/');
+//         //converts the data to JSON once fetched
+//         const data = await response.json();
 
-async function fetchEvents() {
-    try {
-        //retrieves the data from the given URL and waits for it to be fully fetched
-        const response = await fetch('https://purple-pine-028c.leith-green.workers.dev/');
-        //converts the data to JSON once fetched
-        const data = await response.json();
+//         //varaible holds the events array and container for the data to be combined
+//         const populateEvents = (events, container) => {
+//             let lastYear = null;
 
-        //varaible holds the events array and container for the data to be combined
-        const populateEvents = (events, container) => {
-            let lastYear = null;
-
-            //creates a date for each event and extract the year
-            events.forEach(event => {
-                const eventDate = new Date(event.date);
-                const year = eventDate.getFullYear();
+//             //creates a date for each event and extract the year
+//             events.forEach(event => {
+//                 const eventDate = new Date(event.date);
+//                 const year = eventDate.getFullYear();
                 
-                //checks the year, adds heading element to separate each years events if different
-                if (year !== lastYear) {
-                    const yearHeader = document.createElement('h5');
-                    yearHeader.innerText = year;
-                    container.appendChild(yearHeader);
-                    lastYear = year; // Update last year
-                }
+//                 //checks the year, adds heading element to separate each years events if different
+//                 if (year !== lastYear) {
+//                     const yearHeader = document.createElement('h5');
+//                     yearHeader.innerText = year;
+//                     container.appendChild(yearHeader);
+//                     lastYear = year; // Update last year
+//                 }
+//                 //creates a div to store the fetched event data, set it to display in the container
+//                 const div = document.createElement('div');
+//                 div.innerText = `${event.title} - ${eventDate.toLocaleDateString()}`;
+//                 //then adds the element to the DOM so it's visible in the browser
+//                 container.appendChild(div);
+//             });
+//         };
+//         //gets correct element for each region and populate with corresponding event data
+//         const englandAndWalesBody = document.getElementById('englandAndWalesBody');
+//         populateEvents(data['england-and-wales'].events, englandAndWalesBody);
 
-                //creates a div to store the fetched event data, set it to display in the container
-                const div = document.createElement('div');
-                div.innerText = `${event.title} - ${eventDate.toLocaleDateString()}`;
-                //then adds the element to the DOM so it's visible in the browser
-                container.appendChild(div);
-            });
-        };
+//         const scotlandBody = document.getElementById('scotlandBody');
+//         populateEvents(data.scotland.events, scotlandBody);
+//         const northernIrelandBody = document.getElementById('northernIrelandBody');
+//         populateEvents(data['northern-ireland'].events, northernIrelandBody);
 
-        //gets correct element for each region and populate with corresponding event data
-        const englandAndWalesBody = document.getElementById('englandAndWalesBody');
-        populateEvents(data['england-and-wales'].events, englandAndWalesBody);
+//     //throws an error if the try code is unsuccessful
+//     } catch (error) {
+//         console.error("Error fetching data: ", error);
+//     }
+// }
 
-        const scotlandBody = document.getElementById('scotlandBody');
-        populateEvents(data.scotland.events, scotlandBody);
-
-        const northernIrelandBody = document.getElementById('northernIrelandBody');
-        populateEvents(data['northern-ireland'].events, northernIrelandBody);
-
-    //throws an error if the try code is unsuccessful
-    } catch (error) {
-        console.error("Error fetching data: ", error);
-    }
-}
-
-//calls the function to execute the code and display it in the browser accordion 
-fetchEvents();
+// //calls the function to execute the code and display it in the browser accordion 
+// fetchEvents();
 </script>
