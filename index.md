@@ -9,31 +9,31 @@ layout: layout.liquid
 
 <script>
   async function getCountry() {
-    try {
-      const response = await fetch('https://cold-butterfly-7c04.leith-green.workers.dev/');
-      if (!response.ok) throw new Error('Network response was not ok');
-      
-      const data = await response.json();
-      return data.regionCode;
-    } catch (error) {
-      console.error('Fetch error:', error);
-      return 'ENG'; // Default to England if there's an error
-    }
+    const response = await fetch('https://cold-butterfly-7c04.leith-green.workers.dev/');
+    //converts the data to JSON once fetched
+    const data = await response.json();
+    return data.regionCode
   }
 
+  //waits for the DOM to fully load before executing the script
   document.addEventListener('DOMContentLoaded', async () => {
     const country = await getCountry();
+    //gets the user's country from the body data attribute
+    // const country = document.body.dataset.country || 'GB-ENG';
 
+    // //maps the correct country code to the corresponding accordion id (England & Wales share)
     const sections = {
       'ENG': 'englandAndWales', 
       'WLS': 'englandAndWales',  
       'SCT': 'scotland',  
       'NIR': 'northernIreland', 
     };
-    
+    // Collects the collapse id based on the user's country, or defaults to 'englandAndWales' if country not found
     const sectionId = sections[country] || 'englandAndWales'; 
+    // Selects which accordion section should be shown
     const sectionToShow = document.getElementById(sectionId);
     
+    // If the section exists in the DOM, "show" it on the webpage
     if (sectionToShow) {
       const collapse = sectionToShow.querySelector('.accordion-collapse');
       if (collapse) {
