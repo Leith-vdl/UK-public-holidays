@@ -5,7 +5,7 @@ export default async function handler(request) {
         timestamp: Date.now(),
     };
 
-    returnnewResponse(JSON.stringify(jsonResponse), {
+    return new Response(JSON.stringify(jsonResponse), {
         headers: {
             'Content-Type': 'application/json',
         },
