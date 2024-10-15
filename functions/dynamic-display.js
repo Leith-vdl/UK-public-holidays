@@ -15,7 +15,7 @@ export async function onRequest(context) {
     return new Response(responseBody, {
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': request.headers.get('origin')
+        // 'Access-Control-Allow-Origin': request.headers.get('origin') not required becuase it's a function same domain
       },
     });
   } 
