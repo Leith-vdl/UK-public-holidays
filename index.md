@@ -94,8 +94,6 @@ layout: layout.liquid
         console.error("Error fetching data: ", error);
     }
   }
-
 //calls the function to execute the code and display it in the browser accordion 
 fetchEvents(); */}
-
 </script>
