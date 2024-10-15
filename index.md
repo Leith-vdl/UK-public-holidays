@@ -9,7 +9,7 @@ layout: layout.liquid
 
 <script>
   async function getCountry() {
-    const response = await fetch('https://cold-butterfly-7c04.leith-green.workers.dev/');
+    const response = await fetch('/dynamic-display');
     if (!respose.ok) 
     {
         console.log(`request failed with status: ${response.status}:${response.statusText}`)

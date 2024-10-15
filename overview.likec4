@@ -22,6 +22,9 @@ specification {
         }
     }
     element api
+    element liquidTemplate
+    element page
+
 
 }
 
@@ -34,6 +37,12 @@ model {
 
             -> cdn
         }
+        page index {
+            liquidTemplate nav
+            liquidTemplate accordion {
+                liquidTemplate accordion-events
+            }
+        }
 
 
         system vanilajs {
@@ -42,15 +51,17 @@ model {
             }
         }
 
+
+
         -> UKBankHolidaysPages
     }
 
-    cfPages UKBankHolidaysPages 
+
 
     actor user
     api govUKPublicholidays
-    cfWorker purplePineWorker
-    system eleventy
+
+
     system github {
         style {
             icon tech:github
@@ -59,20 +70,42 @@ model {
 
     system cdn
 
+    system cloudflare {
+        cfPages UKBankHolidaysPages
+        cfWorker purplePineWorker
+        system siteBuilder {
+            system eleventy '11ty'
+            system node
+            system liquidjs
+        }
+
+    }
+
     eleventy -> github
     eleventy -> UKBankHolidaysPages
-    
-
 
     user -> UKBankHolidays
     purplePineWorker -> govUKPublicholidays
-    UKBankHolidays.vanilajs -> purplePineWorker
+    siteBuilder.eleventy -> purplePineWorker
 }
 
 views {
+    /**
+     * @likec4-generated(v1)
+     * iKRoYXNo2Sg1N2FhMzNhODUyOWI1ZGQ2ZDFiZWEzOWI3MjVmODNkNDRjOGRhMjdkqmF1dG9MYXlvdXSBqWRpcmVjdGlvbqJUQqF4AKF5AKV3aWR0aM0GqqZoZWlnaHTNBGilbm9kZXOJpHVzZXKCoWKUzQNoAM0BQMy0oWPCrlVLQmFua0hvbGlkYXlzgqFilM0DaM0BH80BQMy0oWPCqmNsb3VkZmxhcmWCoWKUDs0CPc0E+M0BFKFjw6ZnaXRodWKCoWKUAM0DtM0BQMy0oWPCs2dvdlVLUHVibGljaG9saWRheXOCoWKUzQNozQO0zQFAzLShY8KjY2RugqFilM0Fas0CWM0BQMy0oWPCtmNsb3VkZmxhcmUuc2l0ZUJ1aWxkZXKCoWKUNs0Ces0BQMy0oWPCu2Nsb3VkZmxhcmUucHVycGxlUGluZVdvcmtlcoKhYpTNA57NAnTNAUDMtKFjwr5jbG91ZGZsYXJlLlVLQmFua0hv
+     * bGlkYXlzUGFnZXOCoWKUzQHkzQJ0zQFMzLShY8KlZWRnZXOHs3VzZXI6VUtCYW5rSG9saWRheXOComRw2T1lLDEwMzIsMjg3LjA2IDEwMzIsMTc5LjkxIDEwMzIsMjEwLjczIDEwMzIsMjQ1LjM5IDEwMzIsMjc2Ljk0oXCUks0ECMy0ks0ECMzTks0ECMz1ks0ECM0BFdktVUtCYW5rSG9saWRheXM6Y2xvdWRmbGFyZS5VS0JhbmtIb2xpZGF5c1BhZ2VzgqJkcNlGZSw3NTAuNzQsNjI4LjA0IDkzMS40NSw0NjYuNTMgODc4LjE4LDUxNC4xNCA4MTIuNyw1NzIuNjYgNzU4LjMzLDYyMS4yNaFwlJLNA6PNAdOSzQNuzQICks0DLc0CPZLNAvbNAm2yVUtCYW5rSG9saWRheXM6Y2RugqJkcNlFZSwxMzk4LjcsNjAwLjAyIDExNzkuNyw0NjYuNjUgMTI0NS41LDUwNi43MSAx
+     * MzIzLDU1My45MiAxMzg5LjcsNTk0LjU5oXCUks0EnM0B05LNBN3NAfuSzQUrzQIqks0Fbs0CU9kyY2xvdWRmbGFyZS5zaXRlQnVpbGRlcjpjbG91ZGZsYXJlLnB1cnBsZVBpbmVXb3JrZXKDomNwlIKheM0BqKF5zQMmgqF4zQKKoXnNA0eCoXjNAwyhec0DPIKheM0DaKF5zQMnomRw2UZlLDU5MC4wMiw2MDAuMjIgNTkwLjAyLDQ3OS42IDU5MC4wMiw1MTQuMjcgNTkwLjAyLDU1NC4xOSA1OTAuMDIsNTg5LjgxoXCaks0Bds0DFpLNAZfNAyGSzQG5zQMsks0B2s0DMpLNAnTNA06SzQKgzQNOks0DOs0DMpLNA1jNAyySzQN3zQMjks0Dlc0DGdk1Y2xvdWRmbGFyZS5zaXRlQnVpbGRlcjpjbG91ZGZsYXJlLlVLQmFua0hvbGlkYXlzUGFnZXODomNwk4KheMtAeatkWhys
+     * CKF5y0CGezMzMzMzgqF4zQGooXnNAs6CoXjLQHt3ztkWhyuhectAhlvO2RaHK6JkcNlGZSw4OTUuOTIsNjAwLjA4IDcxOS45NSw0NzkuOCA3NzIuNzIsNTE1Ljg3IDgzMy43Niw1NTcuNTkgODg3LjM4LDU5NC4yNKFwlJLNAXbNAs6SzQGXzQLOks0Buc0CzpLNAdrNAs69Y2xvdWRmbGFyZS5zaXRlQnVpbGRlcjpnaXRodWKDomNwkYKheMyxoXnNA6qiZHDZRmUsMjg4LjMzLDYwMC4wOCA0NjEuODgsNDc5LjggNDA5Ljg0LDUxNS44NyAzNDkuNjMsNTU3LjU5IDI5Ni43NSw1OTQuMjShcJSSzMfNAyiSzMDNA1CSzLjNA4CSzLHNA6rZL2Nsb3VkZmxhcmUucHVycGxlUGluZVdvcmtlcjpnb3ZVS1B1YmxpY2hvbGlkYXlzgqJkcNlDZSwxMDQ3LjIsOTQ3Ljk5IDEwNzEs
+     * ODA3Ljg1IDEwNjQuMSw4NDguMzIgMTA1Niw4OTYuMjQgMTA0OC45LDkzNy44NKFwlJLNBC/NAyiSzQQozQNQks0EIM0DgJLNBBnNA6o=
+     */
     view index {
-        include *
+        include *, cloudflare.*
     }
 
-    view of UKBankHolidays { include *}
+    view of UKBankHolidays {
+        include UKBankHolidays, UKBankHolidays.* , index.*, index.accordion.*
+    }
+
+
+    view of siteBuilder { include *}
 }
