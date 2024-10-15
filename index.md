@@ -13,7 +13,7 @@ layout: layout.liquid
     if (!response.ok) 
     {
         console.log(`request failed with status: ${response.status}:${response.statusText}`)
-        return 'ENG'
+        return 'England'
     }
     //converts the data to JSON once fetched
     try {
@@ -21,7 +21,7 @@ layout: layout.liquid
       return data.regionCode
     }catch(e) {
         console.log(`failed to parse response: ${e}`)
-        return 'ENG'
+        return 'England'
     }
   }
   //waits for the DOM to fully load before executing the script
@@ -29,10 +29,10 @@ layout: layout.liquid
     const country = await getCountry();
     //maps the correct ISO country code to the corresponding accordion id (England & Wales share)
     const sections = {
-      'ENG': 'englandAndWales',  
-      'WLS': 'englandAndWales',  
-      'SCT': 'scotland',  
-      'NIR': 'northernIreland', 
+      'England': 'englandAndWales',  
+      'Wales': 'englandAndWales',  
+      'Scotland': 'scotland',  
+      'Northern Ireland': 'northernIreland', 
     };
     // Collects the collapse id based on the user's country, or defaults to 'englandAndWales' if country not found
     const sectionId = sections[country] || 'scotland'; 
