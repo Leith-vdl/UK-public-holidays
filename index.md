@@ -46,7 +46,6 @@ layout: layout.liquid
       }
     }
   });
-
   //Old js code
   {/* async function fetchEvents() {
     try {
