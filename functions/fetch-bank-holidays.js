@@ -20,7 +20,7 @@ export async function handleRequest(request) {
         return new Response(JSON.stringify(data), {
             headers: {
                 "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": request.headers.get("origin")
+                // "Access-Control-Allow-Origin": request.headers.get("origin") not required becuase it's a function same domain
             }
         });
 

@@ -1,3 +1,4 @@
+import liquidjs from 'https://cdn.jsdelivr.net/npm/liquidjs@10.17.0/+esm'
 export async function onRequest(context) {
     const request = context.request;
     console.log('handleRequest', request);

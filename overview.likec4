@@ -71,7 +71,9 @@ model {
     system cdn
 
     system cloudflare {
-        cfPages UKBankHolidaysPages
+        cfPages UKBankHolidaysPages {
+            system liquidServerRenderedPage
+        }
         cfWorker purplePineWorker
         system siteBuilder {
             system eleventy '11ty'
@@ -98,7 +100,10 @@ views {
      * ODA3Ljg1IDEwNjQuMSw4NDguMzIgMTA1Niw4OTYuMjQgMTA0OC45LDkzNy44NKFwlJLNBC/NAyiSzQQozQNQks0EIM0DgJLNBBnNA6o=
      */
     view index {
-        include *, cloudflare.*
+        include *, cloudflare.*,cloudflare.UKBankHolidaysPages.liquidServerRenderedPage
+      style cloudflare.UKBankHolidaysPages.liquidServerRenderedPage {
+        color red
+      }
     }
 
     view of UKBankHolidays {

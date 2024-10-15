@@ -47,7 +47,7 @@ layout: layout.liquid
     }
   });
   //Old js code
-  {/* async function fetchEvents() {
+  async function fetchEvents() {
     try {
         //retrieves the data from the given URL and waits for it to be fully fetched
         const response = await fetch('fetch-bank-holidays');
@@ -95,5 +95,5 @@ layout: layout.liquid
     }
   }
 //calls the function to execute the code and display it in the browser accordion 
-fetchEvents(); */}
+fetchEvents(); 
 </script>
