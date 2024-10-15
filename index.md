@@ -10,9 +10,19 @@ layout: layout.liquid
 <script>
   async function getCountry() {
     const response = await fetch('https://cold-butterfly-7c04.leith-green.workers.dev/');
+    if (!respose.ok) 
+    {
+        console.log(`request failed with status: ${response.status}:${response.statusText}`)
+        return 'ENG'
+    }
     //converts the data to JSON once fetched
-    const data = await response.json();
-    return data.regionCode
+    try {
+      const data = await response.json();
+      return data.regionCode
+    }catch(e) {
+        console.log(`failed to parse response: ${e}`)
+        return 'ENG'
+    }
   }
   //waits for the DOM to fully load before executing the script
   document.addEventListener('DOMContentLoaded', async () => {
