@@ -1,0 +1,78 @@
+specification {
+    element webApp {
+        style {
+            shape browser
+            color slate
+        }
+    }
+    element cfWorker {
+        style {
+            icon tech:cloudflare
+        }
+    }
+    element cfPages {
+        style {
+            icon tech:cloudflare
+        }
+    }
+    element system
+    element actor {
+        style {
+            shape person
+        }
+    }
+    element api
+
+}
+
+model {
+    webApp UKBankHolidays {
+        system bootstrap {
+            style {
+                icon tech:bootstrap
+            }
+
+            -> cdn
+        }
+
+
+        system vanilajs {
+            style {
+                icon tech:javascript
+            }
+        }
+
+        -> UKBankHolidaysPages
+    }
+
+    cfPages UKBankHolidaysPages 
+
+    actor user
+    api govUKPublicholidays
+    cfWorker purplePineWorker
+    system eleventy
+    system github {
+        style {
+            icon tech:github
+        }
+    }
+
+    system cdn
+
+    eleventy -> github
+    eleventy -> UKBankHolidaysPages
+    
+
+
+    user -> UKBankHolidays
+    purplePineWorker -> govUKPublicholidays
+    UKBankHolidays.vanilajs -> purplePineWorker
+}
+
+views {
+    view index {
+        include *
+    }
+
+    view of UKBankHolidays { include *}
+}

@@ -18,5 +18,4 @@ export async function onRequest(context) {
         'Access-Control-Allow-Origin': request.headers.get('origin')
       },
     });
-  }
-  
+  } 
