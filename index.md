@@ -35,7 +35,7 @@ layout: layout.liquid
       'NIR': 'northernIreland', 
     };
     // Collects the collapse id based on the user's country, or defaults to 'englandAndWales' if country not found
-    const sectionId = sections[country] || 'englandAndWales'; 
+    const sectionId = sections[country] || 'scotland'; 
     // Selects which accordion section should be shown
     const sectionToShow = document.getElementById(sectionId);
     // If the section exists in the DOM, "show" it on the webpage
