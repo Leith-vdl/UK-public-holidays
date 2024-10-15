@@ -10,7 +10,7 @@ layout: layout.liquid
 <script>
   async function getCountry() {
     const response = await fetch('/dynamic-display');
-    if (!respose.ok) 
+    if (!response.ok) 
     {
         console.log(`request failed with status: ${response.status}:${response.statusText}`)
         return 'ENG'
