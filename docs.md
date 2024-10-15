@@ -10,6 +10,7 @@ layout: layout.liquid
 
 ---
 
+
 <h5>This site provides the user with groups of bank holidays for residents of the United Kingdom. The events are separated by location (England & Wales, Scotland, and Northern Ireland respectively) and filtered so that only future bank holidays will be displayed on the page. 
 <br>
 <br>
