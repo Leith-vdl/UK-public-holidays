@@ -37,7 +37,7 @@ addEventListener('fetch', event => {
 //Old js code
 
 <script>
-async function fetchEvents() {
+{/* async function fetchEvents() {
     try {
         //retrieves the data from the given URL and waits for it to be fully fetched
         const response = await fetch('https://purple-pine-028c.leith-green.workers.dev/');
@@ -86,7 +86,5 @@ async function fetchEvents() {
 }
 
 //calls the function to execute the code and display it in the browser accordion 
-fetchEvents();
-
-
+fetchEvents(); */}
 </script>
