@@ -6,7 +6,7 @@ export async function onRequest(context) {
   
     const resultObject = {
       country: country,
-      regionCode: request.cf?.region || 'N/A',
+      regionCode: request.cf?.regionCode || 'N/A',
       cf: request.cf,
     };
   
