@@ -1,11 +1,11 @@
 import liquidjs from 'https://cdn.jsdelivr.net/npm/liquidjs@10.17.0/+esm'
 
-const { Liquid } = liquidjs;
+const { Liquid } = 'liquidjs';
 
-//liqid instance
+//a new liquid instance
 const engine = new Liquid();
 
-//liquid template
+//creates liquid template to be populated
 const templateString = `
 <!DOCTYPE html>
 <html lang="en">
@@ -24,6 +24,7 @@ const templateString = `
 export async function onRequest(context) {
     const request = context.request;
 
+    //defines what data will be pushed to tge template
     const contextData = {
         title: 'todo - render some markdown in a worker',
         description: 'This page is rendered using liquidJS in a worker function'
@@ -35,7 +36,7 @@ export async function onRequest(context) {
     return new Response(html, {
       headers: {
         'Content-Type': 'text/html',
-        // 'Access-Control-Allow-Origin': request.headers.get('origin') not required becuase it's a function same domain
+        // 'Access-Control-Allow-Origin': request.headers.get('origin') ...not required becuase it's a function same domain
       },
     });
   } 
