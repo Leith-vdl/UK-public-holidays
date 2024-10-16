@@ -21,8 +21,6 @@ const templateString = `
 </html>
 `;
 
-
-
 export async function onRequest(context) {
     const request = context.request;
 
