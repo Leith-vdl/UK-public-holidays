@@ -11,7 +11,7 @@ layout: layout.liquid
 
 <script>
   //includes hello-liquid.js worker function 
-  fetch('/functions/hello-liquid.js')
+  fetch('./functions/hello-liquid.js')
         .then(response => response.text())
         .then(html => {
             document.getElementById('htmlFromWorker').innerHTML = html;
