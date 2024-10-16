@@ -8,9 +8,10 @@ layout: layout.liquid
 {%- include "accordion.liquid"-%}
 
 <script type="text/template">
-<h3>{{ name | capitalize | prepend: "Welcome to "}}</h3>
+<h3>{{ name | capitalize | prepend: "welcome to "}}</h3>
 </script>
 <div id="result"></div>
+<script src='functions/hello-liquid.js'></script>
 
 <script>
   //fetches user location
