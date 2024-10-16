@@ -30,12 +30,16 @@ layout: layout.liquid
       <td>A serverless execution environment that allows developers to run JavaScript at the edge of Cloudflare’s global network. This enables low-latency processing of requests and responses, making it ideal for APIs and dynamic content.</td>
     </tr>
     <tr>
+      <td>Worker Functions</td>
+      <td>Specific functions or methods designed to perform tasks in an asynchronous environment. These functions typically handle individual pieces of work, allowing for efficient processing by distributing tasks across multiple threads or processes. This enhances performance and responsiveness in applications by enabling parallel execution and better resource management.</td>
+    </tr>
+    <tr>
       <td>Bootstrap</td>
       <td>front-end framework that helps developers design responsive and mobile-first websites quickly. It provides pre-built CSS and JavaScript components, like grids, buttons, and modals, which streamline the development process.</td>
     </tr>
     <tr>
-      <td>Nunjucks</td>
-      <td>A templating engine for JavaScript that allows developers to create dynamic HTML by mixing static content with dynamic data. It supports features like template inheritance and asynchronous rendering, making it useful for server-side and client-side applications.</td>
+      <td>Liquid</td>
+      <td>Liquid is a templating language that allows developers to create dynamic web content by embedding variables and logic in templates. It's commonly used in platforms like Shopify.</td>
     </tr>
     <tr>
       <td>Markdown</td>
