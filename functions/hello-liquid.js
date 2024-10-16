@@ -1,6 +1,5 @@
-//imports the liquid templating engine from a CDN (Content Delivery NEtwork)
-import liquidjs from 'https://cdn.jsdelivr.net/npm/liquidjs@10.17.0/+esm';
 
+import liquidjs from 'liquidjs';
 
 
 export async function onRequest(context) {
