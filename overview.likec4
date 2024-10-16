@@ -15,6 +15,11 @@ specification {
             icon tech:cloudflare
         }
     }
+    element cfPagesFunction  {
+        style {
+            icon tech:cloudflare
+        }
+    }
     element system
     element actor {
         style {
@@ -88,6 +93,31 @@ model {
     user -> UKBankHolidays
     purplePineWorker -> govUKPublicholidays
     siteBuilder.eleventy -> purplePineWorker
+
+    system hello-liquid {
+        cfPages pages-site {
+            cfPagesFunction hello-liquid-js {
+                title '/hello-liquid.js'
+                system onRequest {
+                    description '
+                        export async function onRequest(context) {
+                        const request = context.request;
+                        ...
+                    '
+                    system response {
+                        description ''
+                        -> webBrowser 'HTML'
+                    }
+                }
+            }
+
+        }
+    }
+
+    system webBrowser {style {shape browser}} 
+
+    user -> webBrowser 
+    webBrowser -> hello-liquid.onRequest 'HTTP GET'
 }
 
 views {
@@ -112,4 +142,8 @@ views {
 
 
     view of siteBuilder { include *}
+
+    view of hello-liquid {
+        include hello-liquid, *, user, hello-liquid-js, hello-liquid-js.*
+    }
 }
