@@ -12,7 +12,7 @@ export async function onRequest(context) {
     try {
 
         //turn template into HTML
-        const html = await engine.parseAndRender(template, { name: 'Leith', foo: 'userAgent' })
+        const html = await engine.parseAndRender(template, { name: 'Leith', foo: userAgent })
 
         return new Response(html, {
             headers: {
