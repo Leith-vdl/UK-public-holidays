@@ -7,12 +7,14 @@ layout: layout.liquid
 
 {%- include "accordion.liquid"-%}
 
+<div id="htmlFromWorker">
+
 <script>
   //includes hello-liquid.js worker function 
-  fetch('/functions/hello-liquid.js') // Adjust the path as needed for your hosting provider
+  fetch('/functions/hello-liquid.js')
         .then(response => response.text())
         .then(html => {
-            document.getElementById('dynamic-content').innerHTML = html;
+            document.getElementById('htmlFromWorker').innerHTML = html;
         })
         .catch(error => console.error('Error fetching worker:', error));
 
@@ -33,7 +35,7 @@ layout: layout.liquid
         return 'ENG'
     }
   }
-  
+
   //waits for the DOM to fully load before executing the script
   document.addEventListener('DOMContentLoaded', async () => {
     const country = await getCountry();
