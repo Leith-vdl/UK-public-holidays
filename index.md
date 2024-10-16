@@ -7,17 +7,12 @@ layout: layout.liquid
 
 {%- include "accordion.liquid"-%}
 
-<div id="htmlFromWorker"></div>
+<script type="text/template">
+<h3>{{ name | capitalize | prepend: "Welcome to "}}</h3>
+</script>
+<div id="result"></div>
 
 <script>
-  //includes hello-liquid.js worker function 
-  fetch('./functions/hello-liquid.js')
-        .then(response => response.text())
-        .then(html => {
-            document.getElementById('htmlFromWorker').innerHTML = html;
-        })
-        .catch(error => console.error('Error fetching worker:', error));
-
   //fetches user location
   async function getCountry() {
     const response = await fetch('/dynamic-display');
@@ -60,8 +55,8 @@ layout: layout.liquid
       }
     }
   });
-  
-  //Old js code
+
+  //old js code
   async function fetchEvents() {
     try {
         //retrieves the data from the given URL and waits for it to be fully fetched
