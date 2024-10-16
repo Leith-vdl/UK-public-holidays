@@ -7,7 +7,7 @@ layout: layout.liquid
 
 {%- include "accordion.liquid"-%}
 
-<div id="htmlFromWorker">
+<div id="htmlFromWorker"></div>
 
 <script>
   //includes hello-liquid.js worker function 
