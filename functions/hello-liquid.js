@@ -1,11 +1,8 @@
 
-import liquidjs from 'liquidjs';
+import { Liquid } from 'liquidjs';
 
 
 export async function onRequest(context) {
-    //extract the Liquid class that has been imported above
-    const { Liquid } = liquidjs;
-
     //create a new instance to parse and render the template
     const engine = new Liquid();
     //selects the template and div respectively
@@ -19,7 +16,6 @@ export async function onRequest(context) {
         return new Response(html, {
             headers: {
                 'Content-Type': 'text/html',
-
             },
         });
     } catch (e) {
