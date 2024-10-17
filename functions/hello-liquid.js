@@ -17,10 +17,10 @@ export async function onRequest(context) {
 
     //prepares Cloudflare header data if it's available
     const cfData = context.request.cf || 'data not available';
-    //formats the Cloudflare data to be displayed as a list of key-value pairs to 
+    //maps the Cloudflare data to key-value pairs and preps it to be displayed as a list
     const cfEntries = Object.entries(cfData).map(([key, value]) => `<li><b>${key}:</b> ${JSON.stringify(value)}</li>`)
 
-    //formats the browser request headers data to be displayed as a list of key-value pairs 
+    //maps the browser request headers data to key-value pairs and preps it to be displayed as a list
     const headerEntries = Object.entries(headers).map(([key, value]) => `<li><b>${key}:</b> ${JSON.stringify(value)}</li>`)
 
     //builds the HTML template to display the request data and  variables
@@ -36,7 +36,7 @@ export async function onRequest(context) {
     `;
 
     try {
-        //if its passes, renders the data as HTML using the liquid templating engine
+        //if its passes, renders the template as HTML using the liquid templating engine to be displayed in the bowser
         const html = await engine.parseAndRender(template, {
             name: 'leith',
             //spreads the headers into the template context
@@ -44,7 +44,7 @@ export async function onRequest(context) {
             qParam: queryParam,
         });
 
-        //retuens the renderd HTML as a response with the coorect content type (html text)
+        //retuens the renderd HTML as a response with the correct content type (html text)
         return new Response(html, {
             headers: { 'Content-Type': 'text/html' },
         });
