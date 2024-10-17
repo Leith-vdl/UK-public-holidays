@@ -1,7 +1,7 @@
 var __defProp = Object.defineProperty;
 var __name = (target, value) => __defProp(target, "name", { value, configurable: true });
 
-// ../.wrangler/tmp/bundle-7chLJF/checked-fetch.js
+// ../.wrangler/tmp/bundle-yQDXVf/checked-fetch.js
 var urls = /* @__PURE__ */ new Set();
 function checkURL(request, init) {
   const url = request instanceof URL ? request : new URL(
@@ -4187,7 +4187,7 @@ async function onRequest2(context) {
   const cfEntries = Object.entries(cfData).map(([key, value]) => `<li><b>${key}:</b> ${JSON.stringify(value)}</li>`);
   const headerEntries = Object.entries(headers).map(([key, value]) => `<li><b>${key}:</b> ${JSON.stringify(value)}</li>`);
   const template = `
-    <h2>Hello {{ name | capitalize }} here are the page's Request Headers, as well as the Cloudflare Request Data and an example of a Query Parameter:</h2>
+    <h2>Hello {{ name | capitalize }}, here are the page's Request Headers, as well as the Cloudflare Request Data and an example of a Query Parameter:</h2>
     <h3>Request Headers:</h3>
     <ul>${headerEntries}</ul>
     <br>
@@ -4720,7 +4720,7 @@ var jsonError = /* @__PURE__ */ __name(async (request, env, _ctx, middlewareCtx)
 }, "jsonError");
 var middleware_miniflare3_json_error_default = jsonError;
 
-// ../.wrangler/tmp/bundle-7chLJF/middleware-insertion-facade.js
+// ../.wrangler/tmp/bundle-yQDXVf/middleware-insertion-facade.js
 var __INTERNAL_WRANGLER_MIDDLEWARE__ = [
   middleware_ensure_req_body_drained_default,
   middleware_miniflare3_json_error_default
@@ -4752,7 +4752,7 @@ function __facade_invoke__(request, env, ctx, dispatch, finalMiddleware) {
 }
 __name(__facade_invoke__, "__facade_invoke__");
 
-// ../.wrangler/tmp/bundle-7chLJF/middleware-loader.entry.ts
+// ../.wrangler/tmp/bundle-yQDXVf/middleware-loader.entry.ts
 var __Facade_ScheduledController__ = class {
   constructor(scheduledTime, cron, noRetry) {
     this.scheduledTime = scheduledTime;

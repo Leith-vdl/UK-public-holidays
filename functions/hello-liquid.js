@@ -25,7 +25,7 @@ export async function onRequest(context) {
 
     //builds the HTML template to display the request data and  variables
     const template = `
-    <h2>Hello {{ name | capitalize }} here are the page's Request Headers, as well as the Cloudflare Request Data and an example of a Query Parameter:</h2>
+    <h2>Hello {{ name | capitalize }}, here are the page's Request Headers, as well as the Cloudflare Request Data and an example of a Query Parameter:</h2>
     <h3>Request Headers:</h3>
     <ul>${headerEntries}</ul>
     <br>
