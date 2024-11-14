@@ -1,26 +1,28 @@
+//import dependencies
 import { Liquid } from 'liquidjs';
 
-//function that handles the incoming requests
+//request handling function that recieves context as a param (context provided by RE)
 export async function onRequest(context) {
     //initialise new instance of the Liquid templating engine
     const engine = new Liquid();
 
-    //retrieve all the request headers from the incoming request
+    //creates an empty object, iterates over incoming request headers, normalises them, stores in object
     const headers = {};
     for (const [key, value] of context.request.headers) {
         //normalises header keys by removing hyphens
         headers[key.replace(/-/g, '')] = value;
     }
 
-    //fetches a query parameter from the url, or defaults to 'No param provided' if it's not there
+    //fetches a query parameter from the url, or defaults to 'No param provided' if it's not found
     const queryParam = new URL(context.request.url).searchParams.get('param') || 'No param provided';
 
     //prepares Cloudflare header data if it's available
     const cfData = context.request.cf || 'data not available';
-    //maps the Cloudflare data to key-value pairs and preps it to be displayed as a list
+
+    //maps the normalised Cloudflare headers to key-value pairs to be displayed as a list
     const cfEntries = Object.entries(cfData).map(([key, value]) => `<li><b>${key}:</b> ${JSON.stringify(value)}</li>`)
 
-    //maps the browser request headers data to key-value pairs and preps it to be displayed as a list
+    //maps the normalised browser headers to key-value pairs to be displayed as a list
     const headerEntries = Object.entries(headers).map(([key, value]) => `<li><b>${key}:</b> ${JSON.stringify(value)}</li>`)
 
     //builds the HTML template to display the request data and  variables
@@ -56,3 +58,10 @@ export async function onRequest(context) {
         });
     }
 }
+
+
+
+// This code is a serverless function written in JavaScript, 
+// designed to handle incoming HTTP requests using the Liquid templating engine. 
+// It processes the requests, extracts information, and generates an HTML response
+// in the form of a list oif key values.
