@@ -1,8 +1,7 @@
 UK Public Holidays
 <br>
 <br>
-Description:
-<br>
+<b>Description:</b>
 <br>
 A simple web application that fetches data from the UK bank Holidays API and provides a list of UK public holidays for a given year. The app checks the users location and matches it to a country within the UK (England, Scotland, Wales, and Northern Ireland) and displays the corresponding section upon page load. It also filters based on date so that only future holiday dates will be shown.
 <br>
