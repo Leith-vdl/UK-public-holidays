@@ -16,7 +16,7 @@ A simple web application that fetches data from the UK bank Holidays API and pro
 <br>
 <br>
 <b>Steps to Run:</b>
-(requires Node.js v14 or higher)
+<br>(requires Node.js v14 or higher)
 <br>
 1. git clone https://github.com/Leith-vdl/uk-public-holidays.git
 <br>
