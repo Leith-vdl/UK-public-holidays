@@ -16,11 +16,11 @@ Tech Stack:
 
 Steps to Run:
 (requires Node.js v14 or higher)
-
+<br>
 
 1. git clone https://github.com/Leith-vdl/uk-public-holidays.git
 
-2.cd uk-public-holidays
+2. cd uk-public-holidays
 
 3. npm install
 
