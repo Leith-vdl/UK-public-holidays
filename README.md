@@ -14,6 +14,7 @@ A simple web application that fetches data from the UK bank Holidays API and pro
 <br>
 -Other: UK Public Holidays API
 <br>
+<br>
 <b>Steps to Run:</b>
 (requires Node.js v14 or higher)
 <br>
